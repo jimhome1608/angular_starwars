@@ -26,9 +26,10 @@ export class StarWarsService {
         (data:any) => {
           const extractedChars = data.results;
           const chars = extractedChars.map((char:any) => {
-            return {name: char.name};
+            return {name: char.name, height: char.height, mass: char.mass, hair_color: char.hair_color, gender: char.gender };
           });
           this.characters = chars;
+          console.log(chars);
           this.charactersChanged.next();
         }
       );

@@ -10,6 +10,7 @@ import { Character } from './character';
 export class AppComponent {
   title = 'starwars';
   characters:Character[] = [];
+  displayedColumns: string[] = ['name', 'height', 'mass', 'hair_color', 'gender'];
 
   swService: StarWarsService;
   subscription: any;
