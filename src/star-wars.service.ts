@@ -31,6 +31,11 @@ export class StarWarsService {
           this.characters = chars;
           console.log(chars);
           this.charactersChanged.next();
+          this.characters.forEach(char => {
+            if ((<Character>char).name == "Luke Skywalker")
+            (<Character>char).image_url = "./assets/images/luke_skywalker.png";
+          });
+          this.charactersChanged.next();
         }
       );
   }
