@@ -21,7 +21,7 @@ export class StarWarsService {
   }
 
   fetchCharacters() {
-    this.httpClient.get('http://swapi.dev/api/people/')
+    this.httpClient.get('https://swapi.dev/api/people/')
       .subscribe(
         (data:any) => {
           const extractedChars = data.results;
