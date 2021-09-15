@@ -4,4 +4,5 @@ export interface Character {
   mass: string;
   hair_color: string;
   gender: string;
+  image_url: string;
 }

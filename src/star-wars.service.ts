@@ -21,7 +21,7 @@ export class StarWarsService {
   }
 
   fetchCharacters() {
-    this.httpClient.get('http://swapi.dev/api/people/')
+    this.httpClient.get('https://swapi.dev/api/people/')
       .subscribe(
         (data:any) => {
           const extractedChars = data.results;
@@ -30,6 +30,11 @@ export class StarWarsService {
           });
           this.characters = chars;
           console.log(chars);
+          this.charactersChanged.next();
+          this.characters.forEach(char => {
+            if ((<Character>char).name == "Luke Skywalker")
+            (<Character>char).image_url = "./assets/images/luke_skywalker.png";
+          });
           this.charactersChanged.next();
         }
       );
