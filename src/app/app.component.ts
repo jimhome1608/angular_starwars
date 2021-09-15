@@ -14,7 +14,9 @@ export class AppComponent {
 
   swService: StarWarsService;
   subscription: any;
-  loading: string = "Loading";
+  loading: string = "Loading Star Wars Data.  Please wait... ";
+  loaded: boolean = false;
+  star_wars_page: number = 1;
 
 
   constructor (swService: StarWarsService) {
@@ -22,16 +24,20 @@ export class AppComponent {
   }
 
   button_clicked() {
-    console.log("button_clicked");
-    this.characters = this.swService.getCharacters();
+    this.star_wars_page = this.star_wars_page + 1;
+    this.swService.fetchCharacters(this.star_wars_page);
   }
 
   ngOnInit() {
-    this.swService.fetchCharacters();
+    this.swService.fetchCharacters(this.star_wars_page);
     this.subscription = this.swService.charactersChanged.subscribe(
       () => {
-        this.characters = this.swService.getCharacters();
+        const moreCharacters= this.swService.getCharacters();
+        moreCharacters.forEach(c  => {
+          this.characters.push(<Character>c);
+        });
         this.loading = "";
+        this.loaded = true;
       }
     );
   }

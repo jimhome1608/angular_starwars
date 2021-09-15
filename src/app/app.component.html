@@ -1,8 +1,11 @@
 <div>
-  {{loading}}
-  <table class="table">
+  <div *ngIf="!loaded"  class="alert alert-primary" role="alert">
+    {{loading}}
+  </div>
+  <table *ngIf="loaded" class="table">
     <thead class="table-dark">
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Height</th>
         <th>Mass</th>
@@ -12,14 +15,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ch of characters">
+      <tr *ngFor="let ch of characters;let indexOfelement=index;">
+        <td>{{indexOfelement+1}}</td>
         <td>{{ch.name}}</td>
         <td>{{ch.height}}</td>
         <td>{{ch.mass}}</td>
         <td>{{ch.hair_color}}</td>
         <td>{{ch.gender}}</td>
-        <td><img [src]="ch.image_url"></td>
+        <td><img style="height: 50px;" [src]="ch.image_url"></td>
       </tr>
     </tbody>
   </table>
+  <button (click)="button_clicked()" *ngIf="loaded" type="button" class="btn btn-primary">More..</button>
+
 </div>
