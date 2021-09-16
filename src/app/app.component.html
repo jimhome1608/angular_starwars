@@ -1,7 +1,9 @@
 <div>
-  <div *ngIf="!loaded"  class="alert alert-primary" role="alert">
+  <div *ngIf="!loaded"  class="alert alert-dark" role="alert">
     {{loading}}
+    <img [src]="loader_gif"/>
   </div>
+
   <table *ngIf="loaded" class="table">
     <thead class="table-dark">
       <tr>

@@ -17,6 +17,7 @@ export class AppComponent {
   loading: string = "Loading Star Wars Data.  Please wait... ";
   loaded: boolean = false;
   star_wars_page: number = 1;
+  loader_gif = ".././assets/images/loader.gif"
 
 
   constructor (swService: StarWarsService) {
@@ -25,6 +26,7 @@ export class AppComponent {
 
   button_clicked() {
     this.star_wars_page = this.star_wars_page + 1;
+    this.loaded = false;
     this.swService.fetchCharacters(this.star_wars_page);
   }
 
@@ -36,7 +38,6 @@ export class AppComponent {
         moreCharacters.forEach(c  => {
           this.characters.push(<Character>c);
         });
-        this.loading = "";
         this.loaded = true;
       }
     );
